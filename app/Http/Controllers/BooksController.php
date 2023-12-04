@@ -7,8 +7,11 @@ use App\Http\Requests\DeleteBookRequest;
 use App\Http\Requests\EditBookRequest;
 use App\Http\Resources\BooksCollection;
 use App\Http\Resources\BooksResource;
+use App\Jobs\ProcessCoverImage;
 use Illuminate\Http\Request;
 use App\Models\Books;
+use Illuminate\Support\Facades\Process;
+
 class BooksController extends Controller
 {
     /**
@@ -44,6 +47,7 @@ class BooksController extends Controller
             'published' => $request->published,
         ]);
 
+        ProcessCoverImage::dispatch($books);
         return new BooksResource($books);
     }
 
@@ -78,6 +82,9 @@ class BooksController extends Controller
             'published' => $request->published ? $request->published : $book->published,
         ]);
 
+        if ($request->filled('cover')) {
+            ProcessCoverImage::dispatch($book);
+        }
         return new BooksResource($book);
     }
 
