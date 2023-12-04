@@ -16,7 +16,6 @@ class BooksTableSeeder extends Seeder
         $faker = Faker::create('en_US');
         for ($i = 0; $i < 100; $i++) {
             Books::create([
-                //title in english language
                 'title' => $faker->sentence($nbWords = 3, $variableNbWords = true),
                 'author' => $faker->name,
                 'isbn' => $faker->isbn13,
