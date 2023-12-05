@@ -29,6 +29,7 @@ class BooksController extends Controller
     public function search(Request $request)
     {
         $query = $request->query('query');
+
         $books = Books::search($query)->paginate(20);
         return new BooksCollection($books);
     }

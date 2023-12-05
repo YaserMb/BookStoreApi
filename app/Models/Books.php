@@ -12,8 +12,9 @@ class Books extends Model
     use HasFactory;
 
 
-    public function searchableAs(): string
+    public function searchableAs()
     {
         return 'books_index';
     }
+
 }
