@@ -8,5 +8,12 @@ This project uses Laravel 10.
 
 composer install
 
+3) Setup up the Environment
 
-3) R
+cp .env.example .env
+
+4) Run migration
+
+php artisan migrate
+
+5) To run this project Redis, Meilisearch on the machine is required.
