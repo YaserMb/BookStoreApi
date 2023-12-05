@@ -12,11 +12,10 @@ class BooksCollection extends ResourceCollection
      *
      * @return array<int|string, mixed>
      */
-    public function toArray(Request $request)
+    public function toArray(Request $request): array
     {
-        // return parent::toArray($request);
-        $this->collection->transform(function ($book) {
-            return (new BooksResource($book));
-        });
+        return $this->collection->transform(function ($book) {
+            return new BooksResource($book);
+        })->toArray();
     }
 }
